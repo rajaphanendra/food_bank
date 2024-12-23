@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #eee;
+            padding: 10px;
+        }
+
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .donor-info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Donor Dashboard</h1>
+    </header>
+
+    <nav>
+        <a href="{%url 'home' %}">Home</a>
+        <a href="{%url 'donate' %}">Make a Donation</a>
+        <a href="{%url 'donation_list' %}">View Donations</a>
+        <a href="{% url 'donor_logout' %}" class="logout">Logout</a>
+    </nav>
+
+    <div class="dashboard-container">
+        <h2>Welcome, {{ donor.name }}!</h2>
+
+        <div class="donor-info">
+             <p><strong>Name:</strong> {{ donor.first_name }}</p>
+            <p><strong>Mobile Number:</strong> {{ donor.mobile_number }}</p>
+            <p><strong>Address:</strong> {{ donor.address }}</p>
+            <!-- Add more donor-related information as needed -->
+        </div>
+    </div>
+</body>
+</html>

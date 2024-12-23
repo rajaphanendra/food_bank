@@ -1,0 +1,22 @@
+<!-- available_meals.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Meals</title>
+</head>
+<body>
+    <h1>Available Meals</h1>
+
+    {% if available_meals %}
+        <ul>
+            {% for meal in available_meals %}
+                <li>{{ meal.meals.food_expiry }} - {{ meal.food_stock.food_name }} - Quantity: {{ meal.quantity }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No available meals at the moment.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #eee;
+            padding: 10px;
+        }
+
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        select{
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Donation Form</h1>
+    </header>
+
+    <nav>
+        <a href="{%url 'donor_dashboard' %}">Dashboard</a>
+        <a href="{%url 'donation_list' %}">View Donations</a>
+        <a href="{%url 'donor_logout' %}" class="logout">Logout</a>
+    </nav>
+
+    <div class="form-container">
+        <h2>Make a Donation</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            <label for="food_name">Food Name:</label>
+            <!--input type="text" name="food_name" required-->
+            <select name="food_name" id="food_name">
+                <option>select from below</option>
+                <option value="chicken">Chicken</option>
+                <option value="water">Water</option>
+                <option value="bread">Bread</option>
+                <option value="apple">Apple</option>
+                <option value="others">Others</option>
+            </select>
+            <input type="text" name="other_food_name" id="other_food_name" style="display: none;" placeholder="Enter other food">
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" min="1" required>
+
+            <label for="id_unit">Unit:</label>
+            <select name="unit" id="id_unit" required>
+                <option value="lb">lb</option>
+                <option value="oz">oz</option>
+            </select>
+
+            <button type="submit" onclick="validateNumber()">Donate</button>
+        </form>
+    </div>
+    <script>
+        const foodNameSelect = document.getElementById('food_name');
+        const otherFoodInput = document.getElementById('other_food_name');
+
+        foodNameSelect.addEventListener('change', function () {
+            if (foodNameSelect.value === 'others') {
+                otherFoodInput.style.display = 'block';
+            } else {
+              otherFoodInput.style.display = 'none';
+            }
+        });
+
+        function validateNumber() {
+            const number = document.getElementById("id_total_meals").value;
+            if (number <= 0) {
+                alert("Please enter a number greater than 0 for total meals.");
+                return false; // prevent form submission
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

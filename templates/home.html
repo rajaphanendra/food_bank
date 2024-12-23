@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #eee;
+            padding: 10px;
+        }
+
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .donor-info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Food Bank Dashboard</h1>
+    </header>
+
+    <nav>
+        <a href="{%url 'donor_dashboard' %}">Donor</a>
+        <!--<a href="{%url 'donate' %}">Make a Donation</a>
+        <a href="{%url 'donation_list' %}">View Donations</a>--!>
+        <a href="{%url 'create_meals' %}">Meals Dashboard</a>
+        <a href="{%url 'foodbank:donation_list' %}">Food Bank</a>
+        <a href="{%url 'receiver_dashboard' %}">Receiver</a>
+    </nav>
+    <marquee>Food Bank and Meals Dashboard accessable only for admin!!</marquee>
+    <h1 style="text-align: center;">Welcome to Food Bank</h1>
+    <p style="text-align: center; padding: 20px;">Currently, we are observing an alarming increase in the number of individuals experiencing severe hunger, with some unfortunate cases
+        resulting in loss of life. Considering this distressing situation, a small group of volunteers has taken the initiative to organize
+        food donations. Generous donors can contribute various packaged food items such as bread, fruits, cookies, and more to the local
+        food bank, thereby providing essential nourishment to those in need. To manage these donations eﬀectively, an administrator will
+        oversee the food bank's application. The administrator's responsibilities include receiving food items from donors, inspecting their
+        expiration dates, and making necessary updates or removals of donated items. Based on the expiry date and available raw food we will
+        cook the food or prepare the meals and severed to the recipients based on the expiration. Following the appropriate food safety to
+        serve the best quality. The primary objective of our application is to alleviate hunger by ensuring that those who require sustenance
+        are adequately fed.</p>
+</body>
+</html>

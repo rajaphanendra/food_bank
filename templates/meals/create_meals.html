@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>meals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #eee;
+            padding: 10px;
+        }
+
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px; /* Adjust the spacing between checkbox and label */
+            padding-bottom: 75px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Meals Dashboard</h1>
+    </header>
+    <nav>
+        <!--<a href="{%url 'meals_dashboard' %}">Meals Dashboard</a>-->
+        <a href="{%url 'home' %}">Home</a>
+        <a href="{%url 'meals_list' %}">Meals List</a>
+        <a href="{%url 'all_requests' %}">Requests</a>
+        <a href="{%url 'foodbank:donation_list' %}">Food Bank</a>
+        <a href="{% url 'staff_logout' %}" class="logout">Logout</a>
+    </nav>
+    <h2 style="text-align: center; padding: 20px;">Create Meals</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" onclick="validateNumber()">Submit</button>
+    </form>
+    <script>
+         document.addEventListener("DOMContentLoaded", function() {
+            // Get the checkboxes and total meals input
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const totalMealsInput = document.getElementById('id_total_meals');
+
+            // Initialize total meals with the minimum quantity from selected checkboxes
+            updateTotalMeals();
+
+
+            // Add click event listeners to checkboxes
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('click', updateTotalMeals);
+            });
+
+            function updateTotalMeals() {
+                // Calculate the minimum quantity from selected checkboxes
+                const selectedQuantities = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => {
+                        const match = checkbox.parentNode.textContent.match(/Total Quantity: (\d+)/);
+                        return match ? parseInt(match[1]) : 0;
+                    });
+
+                const minQuantity = selectedQuantities.length > 0 ? Math.min(...selectedQuantities) : 0;
+
+                // Update the total meals input
+                totalMealsInput.value = minQuantity;
+            }
+        });
+
+
+        function validateNumber() {
+            const number = document.getElementById("id_total_meals").value;
+            if (number <= 0) {
+                alert("Please enter a number greater than 0 for total meals.");
+                return false; // prevent form submission
+            }
+            return true;
+        }
+    </script>
+
+</body>
+</html>

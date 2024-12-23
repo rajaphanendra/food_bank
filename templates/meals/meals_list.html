@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meals List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #eee;
+            padding: 10px;
+        }
+
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /*h1 {
+            color: #333;
+        }*/
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Meals List</h1>
+    </header>
+    <nav>
+        <a href="{%url 'create_meals' %}">Create Meals</a>
+        <a href="{%url 'all_requests' %}">Requests</a>
+    </nav>
+
+    {% if meals_list %}
+        <ul>
+            {% for meals in meals_list %}
+                <li>{{ meals.food_expiry }} - Total Meals: {{ meals.total_meals }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No meals available.</p>
+    {% endif %}
+
+</body>
+</html>

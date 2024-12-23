@@ -1,0 +1,61 @@
+<!-- foodbank/templates/foodbank/foodbankdonation_confirm_delete.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Deletion</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #4caf50;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Confirm Deletion</h2>
+    <p>Are you sure you want to delete the donation?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm</button>
+    </form>
+    <a href="{% url 'foodbank:donation_list' %}">Cancel</a>
+</body>
+
+</html>
